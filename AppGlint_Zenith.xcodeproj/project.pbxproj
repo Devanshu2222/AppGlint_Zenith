@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		ED7719272CEB2D12009D7B05 /* Exceptions for "AppGlint_Zenith" folder in "AppGlint_Zenith" target */ = {
+		ED7719272CEB2D12009D7B05 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -40,24 +40,9 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		ED7719012CEB2D10009D7B05 /* AppGlint_Zenith */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				ED7719272CEB2D12009D7B05 /* Exceptions for "AppGlint_Zenith" folder in "AppGlint_Zenith" target */,
-			);
-			path = AppGlint_Zenith;
-			sourceTree = "<group>";
-		};
-		ED7719182CEB2D12009D7B05 /* AppGlint_ZenithTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = AppGlint_ZenithTests;
-			sourceTree = "<group>";
-		};
-		ED7719222CEB2D12009D7B05 /* AppGlint_ZenithUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = AppGlint_ZenithUITests;
-			sourceTree = "<group>";
-		};
+		ED7719012CEB2D10009D7B05 /* AppGlint_Zenith */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (ED7719272CEB2D12009D7B05 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = AppGlint_Zenith; sourceTree = "<group>"; };
+		ED7719182CEB2D12009D7B05 /* AppGlint_ZenithTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AppGlint_ZenithTests; sourceTree = "<group>"; };
+		ED7719222CEB2D12009D7B05 /* AppGlint_ZenithUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AppGlint_ZenithUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +185,7 @@
 				};
 			};
 			buildConfigurationList = ED7718FA2CEB2D10009D7B05 /* Build configuration list for PBXProject "AppGlint_Zenith" */;
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -208,7 +194,6 @@
 			);
 			mainGroup = ED7718F62CEB2D10009D7B05;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = ED7719002CEB2D10009D7B05 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -297,6 +282,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,6 +311,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
