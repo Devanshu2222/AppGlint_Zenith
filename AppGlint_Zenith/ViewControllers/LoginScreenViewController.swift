@@ -45,8 +45,10 @@ class LoginScreenViewController: UIViewController {
     */
     @IBAction func LoginButtonTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let HomeVC = storyboard.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
-        present(HomeVC,animated: true)
+        let HomeTBC = storyboard.instantiateViewController(withIdentifier: "tabBarVC") as! UITabBarController
+        HomeTBC.modalPresentationStyle = .fullScreen
+//        performSegue(withIdentifier: "Survey", sender: self)
+        present(HomeTBC.self , animated: true)
     }
     
     

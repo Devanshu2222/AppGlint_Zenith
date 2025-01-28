@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3h3-ZV-8me">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Follow the Leader-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ParentalGamesViewController" customModule="AppGlint_Zenith" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tableView">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="StepCell" rowHeight="300" id="stepCell" customClass="StepCell" customModule="AppGlint_Zenith" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="300"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="stepCell" id="cellContentView">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="timelineView">
+                                                    <rect key="frame" x="40" y="0.0" width="2" height="300"/>
+                                                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="2" id="timelineWidth"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="circleView">
+                                                    <rect key="frame" x="31" y="30" width="20" height="20"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="circleHeight"/>
+                                                        <constraint firstAttribute="width" constant="20" id="circleWidth"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cardView">
+                                                    <rect key="frame" x="71" y="20" width="302" height="120"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="titleLabel">
+                                                            <rect key="frame" x="20" y="16" width="262" height="24"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="24" id="jJz-4n-dQC"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subtitleLabel">
+                                                            <rect key="frame" x="20" y="48" width="262" height="56"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="subtitleLabel" secondAttribute="bottom" constant="16" id="cardBottom"/>
+                                                        <constraint firstItem="titleLabel" firstAttribute="leading" secondItem="cardView" secondAttribute="leading" constant="20" id="cardTitleLeading"/>
+                                                        <constraint firstItem="titleLabel" firstAttribute="top" secondItem="cardView" secondAttribute="top" constant="16" id="cardTitleTop"/>
+                                                        <constraint firstAttribute="trailing" secondItem="titleLabel" secondAttribute="trailing" constant="20" id="cardTitleTrailing"/>
+                                                        <constraint firstItem="subtitleLabel" firstAttribute="leading" secondItem="titleLabel" secondAttribute="leading" id="subtitleLeading"/>
+                                                        <constraint firstItem="subtitleLabel" firstAttribute="top" secondItem="titleLabel" secondAttribute="bottom" constant="8" id="subtitleTop"/>
+                                                        <constraint firstItem="subtitleLabel" firstAttribute="trailing" secondItem="titleLabel" secondAttribute="trailing" id="subtitleTrailing"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="stepImageView">
+                                                    <rect key="frame" x="71" y="159.66666666666666" width="302" height="119.66666666666671"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="120" id="imageHeight"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cardView" firstAttribute="leading" secondItem="timelineView" secondAttribute="trailing" constant="29" id="cardLeading"/>
+                                                <constraint firstItem="cardView" firstAttribute="top" secondItem="cellContentView" secondAttribute="top" constant="20" id="cardTop"/>
+                                                <constraint firstAttribute="trailing" secondItem="cardView" secondAttribute="trailing" constant="20" id="cardTrailing"/>
+                                                <constraint firstItem="circleView" firstAttribute="centerX" secondItem="timelineView" secondAttribute="centerX" id="circleCenterX"/>
+                                                <constraint firstItem="circleView" firstAttribute="top" secondItem="cellContentView" secondAttribute="top" constant="30" id="circleTop"/>
+                                                <constraint firstAttribute="bottom" secondItem="stepImageView" secondAttribute="bottom" constant="20" id="imageBottom"/>
+                                                <constraint firstItem="stepImageView" firstAttribute="leading" secondItem="cardView" secondAttribute="leading" id="imageLeading"/>
+                                                <constraint firstItem="stepImageView" firstAttribute="top" secondItem="cardView" secondAttribute="bottom" constant="20" id="imageTop"/>
+                                                <constraint firstItem="stepImageView" firstAttribute="trailing" secondItem="cardView" secondAttribute="trailing" id="imageTrailing"/>
+                                                <constraint firstAttribute="bottom" secondItem="timelineView" secondAttribute="bottom" id="timelineBottom"/>
+                                                <constraint firstItem="timelineView" firstAttribute="leading" secondItem="cellContentView" secondAttribute="leading" constant="40" id="timelineLeading"/>
+                                                <constraint firstItem="timelineView" firstAttribute="top" secondItem="cellContentView" secondAttribute="top" id="timelineTop"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cardView" destination="cardView" id="cardViewOutlet"/>
+                                            <outlet property="circleView" destination="circleView" id="circleViewOutlet"/>
+                                            <outlet property="stepImageView" destination="stepImageView" id="stepImageViewOutlet"/>
+                                            <outlet property="subtitleLabel" destination="subtitleLabel" id="subtitleLabelOutlet"/>
+                                            <outlet property="timelineView" destination="timelineView" id="timelineViewOutlet"/>
+                                            <outlet property="titleLabel" destination="titleLabel" id="titleLabelOutlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="tableView" secondAttribute="bottom" id="tableViewBottom"/>
+                            <constraint firstItem="tableView" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tableViewLeading"/>
+                            <constraint firstItem="tableView" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="tableViewTop"/>
+                            <constraint firstAttribute="trailing" secondItem="tableView" secondAttribute="trailing" id="tableViewTrailing"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Follow the Leader" id="177-5x-zdy"/>
+                    <connections>
+                        <outlet property="tableView" destination="tableView" id="tableViewOutlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="965.64885496183206" y="3.5211267605633805"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UbY-e7-754">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3h3-ZV-8me" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ZKg-Xq-uLa">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="VGD-xn-9Zn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WQb-4k-Bew" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="38.931297709923662" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

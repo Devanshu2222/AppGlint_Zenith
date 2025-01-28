@@ -14,24 +14,30 @@ class ResourcesViewController: UIViewController {
     
     private var sections: [ResourceSection] = [
         ResourceSection(title: "", items: [
-            ResourceItem(title: "Understand your child more", backgroundColor: .systemCyan),
-            ResourceItem(title: "Activities to be done at home", backgroundColor: .systemBlue)
+            ResourceItem(title: "Understand your child more", backgroundColor: .systemCyan, linkURL: URL(string: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1350917/"), imageName: "Resource_1"),
+            ResourceItem(title: "Activities to be done at home", backgroundColor: .systemBlue, linkURL: URL(string: "https://www.mywellnesshub.in/blog/home-based-occupational-therapy-activities/"), imageName: "Resource_2")
         ]),
         ResourceSection(title: "Discover helpful resources", items: [
-            ResourceItem(title: "Language based autism", backgroundColor: .systemCyan),
-            ResourceItem(title: "Communication based autism", backgroundColor: .systemBlue)
+            ResourceItem(title: "Language based autism", backgroundColor: .systemCyan, linkURL: URL(string: "https://www.sciencedirect.com/science/article/pii/S1750946724001363"), imageName: "Resource_3"),
+            ResourceItem(title: "Communication based autism", backgroundColor: .systemBlue, linkURL: URL(string: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6516977/"), imageName: "Resource_4")
         ]),
-        ResourceSection(title: "Get in touch with", items: [
-            ResourceItem(title: "Our Team", backgroundColor: .systemIndigo)
+        ResourceSection(title: "About Us", items: [
+            ResourceItem(title: "Language based autism", backgroundColor: .systemCyan, linkURL: URL(string: "https://www.sciencedirect.com/science/article/pii/S1750946724001363"), imageName: "Resource_5")
         ])
     ]
     
+    private var filteredSections: [ResourceSection] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
         
+        filteredSections = sections // Initialize filteredSections with all sections
+        
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        searchBar.delegate = self // Set the search bar delegate
     }
     
     private func setupCollectionView() {
@@ -117,11 +123,11 @@ class ResourcesViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension ResourcesViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sections.count
+        return filteredSections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sections[section].items.count
+        return filteredSections[section].items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -129,16 +135,21 @@ extension ResourcesViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        let item = sections[indexPath.section].items[indexPath.item]
-        cell.configure(with: item.title, backgroundColor: item.backgroundColor)
+        let item = filteredSections[indexPath.section].items[indexPath.item]
+        
+        // Load the image from assets using the imageName property
+        let backgroundImage = item.imageName != nil ? UIImage(named: item.imageName!) : nil
+        
+        cell.configure(with: item.title, backgroundColor: item.backgroundColor, backgroundImage: backgroundImage)
         return cell
     }
+
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
         
         let label = UILabel()
-        label.text = sections[indexPath.section].title
+        label.text = filteredSections[indexPath.section].title
         label.font = .systemFont(ofSize: 22, weight: .bold)
         
         header.addSubview(label)
@@ -157,14 +168,31 @@ extension ResourcesViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension ResourcesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Handle cell selection
+        let item = filteredSections[indexPath.section].items[indexPath.item]
+        if let url = item.linkURL {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
 }
 
 // MARK: - UISearchBarDelegate
 extension ResourcesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // Handle search
+        if searchText.isEmpty {
+            // If the search bar is empty, show all resources
+            filteredSections = sections
+        } else {
+            // Filter the sections based on the search text
+            filteredSections = sections.map { section in
+                // Filter the items within each section based on the search text
+                let filteredItems = section.items.filter { item in
+                    item.title.lowercased().contains(searchText.lowercased())
+                }
+                return ResourceSection(title: section.title, items: filteredItems)
+            }.filter { !$0.items.isEmpty } // Remove sections with no items
+        }
+        
+        // Reload the collection view to reflect the changes
+        collectionView.reloadData()
     }
 }
-

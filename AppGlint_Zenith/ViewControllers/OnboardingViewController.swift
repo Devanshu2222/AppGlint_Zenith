@@ -25,9 +25,12 @@ class OnboardingViewController: UIViewController {
          */
     }
     @IBAction func SkipButtonTapped(_ sender: UIButton) {
-        let vc = (UIStoryboard.init(name: "Home", bundle: Bundle.main).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController)
-            self.navigationController?.pushViewController(vc, animated: true)
-//        
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let HomeTBC = storyboard.instantiateViewController(withIdentifier: "tabBarVC") as! UITabBarController
+        HomeTBC.modalPresentationStyle = .fullScreen
+//        performSegue(withIdentifier: "Survey", sender: self)
+        present(HomeTBC.self , animated: true)
+//
 //        
 
     }

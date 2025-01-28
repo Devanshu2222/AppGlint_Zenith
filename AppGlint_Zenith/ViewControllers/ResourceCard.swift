@@ -50,8 +50,12 @@ class ResourceCard: UICollectionViewCell {
         contentView.clipsToBounds = true
     }
     
-    func configure(with title: String, backgroundColor: UIColor) {
-        titleLabel.text = title
-        imageView.backgroundColor = backgroundColor
-    }
-} 
+    func configure(with title: String, backgroundColor: UIColor, backgroundImage: UIImage?) {
+            titleLabel.text = title
+            contentView.backgroundColor = backgroundColor
+            
+            // Set the background image
+            imageView.image = backgroundImage
+        }
+}
+

@@ -8,4 +8,7 @@ struct ResourceSection {
 struct ResourceItem {
     let title: String
     let backgroundColor: UIColor
-} 
+    let linkURL: URL?
+    let imageName: String?
+   // let imageName: UIImage
+}

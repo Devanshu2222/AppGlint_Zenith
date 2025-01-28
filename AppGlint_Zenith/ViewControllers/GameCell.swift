@@ -71,4 +71,16 @@ class GameCell: UICollectionViewCell {
         titleLabel.text = game.title
         iconView.image = game.icon
     }
-} 
+    func configureRecent(with index: Int) {
+        guard let game = UserDataManager.shared.getRecentGame(at: index) else {
+            print("Error: No game found at index \(index)")
+            return
+        }
+
+        containerView.backgroundColor = game.backgroundColor
+        titleLabel.text = game.title
+        iconView.image = game.icon
+    }
+
+
+}

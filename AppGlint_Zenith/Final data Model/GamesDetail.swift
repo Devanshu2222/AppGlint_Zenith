@@ -32,6 +32,7 @@ struct Game {
 
     enum GameType {
         case parental
+        
         case appBased
     }
 
@@ -149,7 +150,7 @@ let balancingFun = Game(
 class GameStore {
     private var games: [Game] = []
     static let shared = GameStore()
-    
+
     private init() {
         games.append(fingerPainting)
         games.append(makeMusicalInstruments)
@@ -157,96 +158,31 @@ class GameStore {
         games.append(bubbleGame)
         games.append(balancingFun)
     }
-    //function to add the game
-    
-    func addGame(_ game: Game) {
-        }
-    
-    
-    //home pages function
-    func getSchedule(for userId: Int, availableGames: [Game]) -> [Int] {
-        // Fetch user details using the userId
-        guard let user = UserDetailsDataModel.shared.getUserDetails(by: userId) else {
-            return []  // Return an empty array if user not found
-        }
 
-        // Filter out the games that have been played (games with non-nil datePlayed)
-        let nonPlayedGames = availableGames.filter { $0.datePlayed == nil }
-
-        // Filter games by categories (based on user favorite games IDs or default categories)
-        let preferredCategories: [Game.GameCategory]
-        
-        // If user has favorite games, we map the favorite game IDs to their corresponding categories
-        if user.favoriteGamesId?.isEmpty ?? true {
-            preferredCategories = [.calming, .sensory, .interactive]  // Default categories if no favorites
-        } else {
-            preferredCategories = user.favoriteGamesId?.compactMap { gameId in
-                // Find the category of each game ID in availableGames
-                availableGames.first(where: { $0.id == gameId })?.categories
-            } ?? []
-        }
-        
-        // Filter the games based on the preferred categories
-        let filteredGames = nonPlayedGames.filter { game in
-            preferredCategories.contains(game.categories)
-        }
-
-        // Randomly pick 4 games if there are enough games available
-        let gameCount = min(filteredGames.count, 4)
-        let randomGames = Array(filteredGames.shuffled().prefix(gameCount))
-        
-        // Map to game IDs
-        let selectedGameIds = randomGames.map { $0.id }
-        
-        // Store the selected games in the user's todayScheduleId
-        UserDetailsDataModel.shared.updateFavouriteGames(newFavoriteGames: selectedGameIds, userId: userId)
-
-        // Return the selected game IDs
-        return selectedGameIds
+    func getAllGames() -> [Game] {
+        return games
     }
 
-
-
-    
-    
-    func getRecentlyPlayedGames(for user: User, availableGames: [Game], limit: Int = 4) -> [Int] {
-        // Filter out the games that have been played (games with non-nil datePlayed)
-        let playedGames = availableGames.filter { $0.datePlayed != nil }
-
-        // Sort the played games by the most recent date played (descending order)
-        let sortedPlayedGames = playedGames.sorted {
-            guard let date1 = $0.datePlayed, let date2 = $1.datePlayed else {
-                return false
-            }
-            return date1 > date2 // Sort by most recent date
-        }
-
-        // Limit the results to the most recent 'limit' games (e.g., the last 4 games)
-        let recentGames = Array(sortedPlayedGames.prefix(limit))
-
-        // Return only the game IDs
-        let recentGameIds = recentGames.map { $0.id }
-        
-        return recentGameIds
+    func getSchedule(for userId: Int) -> [Game] {
+        let availableGames = getAllGames()
+        //let scheduleIds = getSchedule(for: userId)
+        //return availableGames.filter { scheduleIds.contains(where: $0.id) }
+        return availableGames
     }
 
-    
-    func getFavouriteGames(for user: User, availableGames: [Game]) -> [Int] {
-        // Filter the games that are marked as favourites (isFavourite == true)
-        let favouriteGames = availableGames.filter { $0.isFavourite }
-
-        // Optionally, sort the favourite games (e.g., by name or another criterion)
-        let sortedFavouriteGames = favouriteGames.sorted { $0.name < $1.name }  // Sorting by name
-
-        // Return only the game IDs
-        let favouriteGameIds = sortedFavouriteGames.map { $0.id }
-        
-        return favouriteGameIds
+    func getRecentlyPlayedGames(for userId: Int) -> [Game] {
+        let availableGames = getAllGames()
+        return availableGames.filter { game in
+            game.datePlayed != nil
+        }.sorted(by: { $0.datePlayed ?? Date.distantPast > $1.datePlayed ?? Date.distantPast })
     }
 
-    
-
+    func getFavouriteGames(for userId: Int) -> [Game] {
+        let availableGames = getAllGames()
+        return availableGames.filter { $0.isFavourite }
+    }
 }
+
 
 
 

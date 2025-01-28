@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Progress Tracking View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="ProgressTrackingViewController" id="BYZ-38-t0r" customClass="ProgressTrackingViewController" customModule="AppGlint_Zenith" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav-bar">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <items>
+                                    <navigationItem title="Progress tracking" id="nav-item">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" style="plain" id="back-button">
+                                            <connections>
+                                                <action selector="backButtonTapped:" destination="BYZ-38-t0r" id="back-action"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="segment-control">
+                                <rect key="frame" x="20" y="123" width="353" height="32"/>
+                                <segments>
+                                    <segment title="D"/>
+                                    <segment title="W"/>
+                                    <segment title="M"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weekly goals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goals-label">
+                                <rect key="frame" x="20" y="174" width="353" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50% completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="progress-label">
+                                <rect key="frame" x="20" y="205" width="353" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="today-label">
+                                <rect key="frame" x="20" y="245" width="353" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="chart-container">
+                                <rect key="frame" x="20" y="286" width="353" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="chart-height"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highlights" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="highlights-label">
+                                <rect key="frame" x="20" y="506" width="353" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            </label>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tab-bar">
+                                <rect key="frame" x="0.0" y="769" width="393" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Home" image="house.fill" catalog="system" id="home-tab"/>
+                                    <tabBarItem title="Explorer" image="gamecontroller.fill" catalog="system" id="explorer-tab"/>
+                                    <tabBarItem title="Parental" image="person.2.fill" catalog="system" id="parental-tab"/>
+                                    <tabBarItem title="Resources" image="doc.fill" catalog="system" id="resources-tab"/>
+                                    <tabBarItem title="Profile" image="person.circle.fill" catalog="system" id="profile-tab"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="chart-container" firstAttribute="leading" secondItem="today-label" secondAttribute="leading" id="chart-leading"/>
+                            <constraint firstItem="chart-container" firstAttribute="top" secondItem="today-label" secondAttribute="bottom" constant="20" id="chart-top"/>
+                            <constraint firstItem="chart-container" firstAttribute="trailing" secondItem="today-label" secondAttribute="trailing" id="chart-trailing"/>
+                            <constraint firstItem="goals-label" firstAttribute="leading" secondItem="segment-control" secondAttribute="leading" id="goals-leading"/>
+                            <constraint firstItem="goals-label" firstAttribute="top" secondItem="segment-control" secondAttribute="bottom" constant="20" id="goals-top"/>
+                            <constraint firstItem="goals-label" firstAttribute="trailing" secondItem="segment-control" secondAttribute="trailing" id="goals-trailing"/>
+                            <constraint firstItem="highlights-label" firstAttribute="leading" secondItem="chart-container" secondAttribute="leading" id="highlights-leading"/>
+                            <constraint firstItem="highlights-label" firstAttribute="top" secondItem="chart-container" secondAttribute="bottom" constant="20" id="highlights-top"/>
+                            <constraint firstItem="highlights-label" firstAttribute="trailing" secondItem="chart-container" secondAttribute="trailing" id="highlights-trailing"/>
+                            <constraint firstItem="nav-bar" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nav-leading"/>
+                            <constraint firstItem="nav-bar" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nav-top"/>
+                            <constraint firstItem="nav-bar" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nav-trailing"/>
+                            <constraint firstItem="progress-label" firstAttribute="leading" secondItem="goals-label" secondAttribute="leading" id="prog-leading"/>
+                            <constraint firstItem="progress-label" firstAttribute="top" secondItem="goals-label" secondAttribute="bottom" constant="10" id="prog-top"/>
+                            <constraint firstItem="progress-label" firstAttribute="trailing" secondItem="goals-label" secondAttribute="trailing" id="prog-trailing"/>
+                            <constraint firstItem="segment-control" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="seg-leading"/>
+                            <constraint firstItem="segment-control" firstAttribute="top" secondItem="nav-bar" secondAttribute="bottom" constant="20" id="seg-top"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="segment-control" secondAttribute="trailing" constant="20" id="seg-trailing"/>
+                            <constraint firstItem="tab-bar" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="tab-bottom"/>
+                            <constraint firstItem="tab-bar" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tab-leading"/>
+                            <constraint firstItem="tab-bar" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tab-trailing"/>
+                            <constraint firstItem="today-label" firstAttribute="leading" secondItem="progress-label" secondAttribute="leading" id="today-leading"/>
+                            <constraint firstItem="today-label" firstAttribute="top" secondItem="progress-label" secondAttribute="bottom" constant="10" id="today-top"/>
+                            <constraint firstItem="today-label" firstAttribute="trailing" secondItem="progress-label" secondAttribute="trailing" id="today-trailing"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chartContainer" destination="chart-container" id="chart-outlet"/>
+                        <outlet property="goalsLabel" destination="goals-label" id="goals-outlet"/>
+                        <outlet property="highlightsLabel" destination="highlights-label" id="highlights-outlet"/>
+                        <outlet property="progressLabel" destination="progress-label" id="progress-outlet"/>
+                        <outlet property="segmentControl" destination="segment-control" id="segment-outlet"/>
+                        <outlet property="todayLabel" destination="today-label" id="today-outlet"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="118"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="doc.fill" catalog="system" width="115" height="128"/>
+        <image name="gamecontroller.fill" catalog="system" width="128" height="79"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="person.2.fill" catalog="system" width="128" height="86"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

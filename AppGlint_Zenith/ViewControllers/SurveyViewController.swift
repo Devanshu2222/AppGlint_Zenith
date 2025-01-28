@@ -15,63 +15,76 @@ class SurveyViewController: UIViewController {
     @IBOutlet weak var optionCButtonTapped: UIButton!
     @IBOutlet weak var optionDButtonTapped: UIButton!
     
-    // ... other UI elements for different question types
     let autismSurveyManager = AutismSurveyManager()
+        var surveyAnswers: [ResultViewController.SurveyAnswer] = [] // Store answers
 
-       override func viewDidLoad() {
-           super.viewDidLoad()
-           updateUI()
-       }
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            if let userData = UserDataManager.shared.getUserData() {
+                        print("Child Name: \(userData.childName)")
+                        print("Child Age: \(userData.childAge)")
+                        print("Parent Email: \(userData.parentEmail)")
+                        
+                        // Use the data to personalize the screen, e.g., showing the child's name
+                        self.title = "Welcome, \(userData.childName)!"
+                    } else {
+                        print("No user data found!")
+                    }
+            updateUI()
+        }
 
-       func updateUI() {
-           let currentQuestion = autismSurveyManager.currentQuestion
-           QuestionLabel.text = currentQuestion.text
+        func updateUI() {
+            let currentQuestion = autismSurveyManager.currentQuestion
+            QuestionLabel.text = currentQuestion.text
 
-           // Assuming three options for each question
-           optionAButtonTapped.isHidden = currentQuestion.options.count < 1
-               optionBButtonTapped.isHidden = currentQuestion.options.count < 2
-               optionCButtonTapped.isHidden = currentQuestion.options.count < 3
-               optionDButtonTapped.isHidden = currentQuestion.options.count < 4
-           for (index, button) in [optionAButtonTapped, optionBButtonTapped, optionCButtonTapped, optionDButtonTapped].enumerated() {
-                   if index < currentQuestion.options.count {
-                       button!.setTitle(currentQuestion.options[index], for: .normal)
-                       button!.isHidden = false
-                   } else {
-                       button!.isHidden = true
-                   }
-               }
+            let optionButtons = [optionAButtonTapped, optionBButtonTapped, optionCButtonTapped, optionDButtonTapped]
+            for (index, button) in optionButtons.enumerated() {
+                if index < currentQuestion.options.count {
+                    button?.setTitle(currentQuestion.options[index], for: .normal)
+                    button?.isHidden = false
+                    button?.backgroundColor = .systemGray5
+                } else {
+                    button?.isHidden = true
+                }
+            }
+        }
 
-           // Adjust the number of options and button visibility as needed
-           optionDButtonTapped.isHidden = currentQuestion.options.count < 4
-           if currentQuestion.options.count >= 4 {
-               optionDButtonTapped.setTitle(currentQuestion.options[3], for: .normal)
-           }
-       }
+        @IBAction func optionSelected(_ sender: UIButton) {
+            let selectedIndex: Int
+            switch sender {
+            case optionAButtonTapped: selectedIndex = 0
+            case optionBButtonTapped: selectedIndex = 1
+            case optionCButtonTapped: selectedIndex = 2
+            case optionDButtonTapped: selectedIndex = 3
+            default: return
+            }
 
-       @IBAction func optionSelected(_ sender: UIButton) {
-           let selectedIndex: Int
-           switch sender {
-           case optionAButtonTapped: selectedIndex = 0
-           case optionBButtonTapped: selectedIndex = 1
-           case optionCButtonTapped: selectedIndex = 2
-           case optionDButtonTapped: selectedIndex = 3
-           default: return
-           }
+            // Store answer
+            let currentQuestion = autismSurveyManager.currentQuestion
+            let isCorrect = (selectedIndex == currentQuestion.correctAnswerIndex)
+            let answer = ResultViewController.SurveyAnswer(
+                questionId: autismSurveyManager.currentQuestionIndex,
+                selectedOption: selectedIndex,
+                isTrue: isCorrect,  // If needed, assign the correctness result
+                answerText: nil     // Keeping answerText nil
+            )
 
-           let isCorrect = autismSurveyManager.checkAnswer(selectedIndex)
-           sender.backgroundColor = isCorrect ? .systemGreen : .systemRed
+            surveyAnswers.append(answer)
 
-           DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-               sender.backgroundColor = .systemGray5
+            // Proceed to next question
+            if autismSurveyManager.isLastQuestion {
+                performSegue(withIdentifier: "ResultVC", sender: nil)
+            } else {
+                autismSurveyManager.nextQuestion()
+                updateUI()
+            }
+        }
 
-               if self?.autismSurveyManager.isLastQuestion == true {
-                   self?.performSegue(withIdentifier: "ResultVC", sender: nil)
-               } else {
-                   self?.autismSurveyManager.nextQuestion()
-                   self?.updateUI()
-               }
-           }
-       }
-
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "ResultVC",
+               let resultVC = segue.destination as? ResultViewController {
+                resultVC.surveyAnswers = surveyAnswers
+            }
+        }
        // ... other methods and properties
    }
